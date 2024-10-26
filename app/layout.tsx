@@ -16,17 +16,20 @@ export default function RootLayout({
       <html lang="en">
         <body>
           <SignedOut>
-
             <SignInButton>
-              <button className='bg-sky-500 hover:bg-sky-300 rounded py-1 px-1 ml-2 mt-2'> Sign In </button>
+              <button className="bg-sky-500 hover:bg-sky-300 rounded py-1 px-1 ml-2 mt-2">
+                {" "}
+                Sign In{" "}
+              </button>
             </SignInButton>
           </SignedOut>
           <SignedIn>
             <UserButton />
+            <text className=' font-serif ml-4 '>SEP Planner Application</text>
           </SignedIn>
           {children}
         </body>
       </html>
     </ClerkProvider>
-  )
+  );
 }

@@ -1,10 +1,12 @@
 'use client'
+
 import { useState } from "react";
 
 export default function Example() {
+  const [clientName, setClientName] = useState("");
+  const [memo, setMemo] = useState("");
   const [fromDate, setFromDate] = useState("");
   const [toDate, setToDate] = useState("");
-  const [clientName, setClientName] = useState("");
   const [eventType, setEventType] = useState("");
   const [numAttend, setNumAttend] = useState(0);
   const [preferences, setPreferences] = useState({
@@ -23,8 +25,20 @@ export default function Example() {
     }));
   };
 
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    const eventRequest = {
+      clientName, memo, eventType, fromDate, toDate, numAttend, preferences
+    }
+
+    alert(JSON.stringify(eventRequest, null, 2));
+    
+  }
+    
+
   return (
-    <form className="m-10">
+    <form onSubmit={handleSubmit} className="m-10">
       <div className="space-y-12">
         <div className="border-b border-gray-900/10 pb-12">
           <h2 className="text-base font-semibold leading-7 text-gray-900">
@@ -59,18 +73,19 @@ export default function Example() {
 
             <div className="col-span-full">
               <label
-                htmlFor="about"
+                htmlFor="memo"
                 className="block text-sm font-medium leading-6 text-gray-900"
               >
                 Event memo:
               </label>
               <div className="mt-2">
                 <textarea
-                  id="about"
-                  name="about"
+                  id="memo"
+                  name="memo"
                   rows={3}
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  defaultValue={""}
+                  onChange={(e) => setMemo(e.target.value)}
+                  value={memo}
                   placeholder=" Write a short description of what this event entails. What, where, when, who, etc."
                 />
               </div>

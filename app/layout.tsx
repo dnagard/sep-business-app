@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import {
   ClerkProvider,
   SignInButton,
@@ -25,7 +26,7 @@ export default function RootLayout({
           </SignedOut>
           <SignedIn>
             <UserButton />
-            <text className=' font-serif ml-4 '>SEP Planner Application</text>
+            <Link className=' font-serif ml-4 ' href="/">SEP Planner Application</Link>
           </SignedIn>
           {children}
         </body>

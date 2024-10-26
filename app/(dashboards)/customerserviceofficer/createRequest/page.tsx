@@ -4,6 +4,25 @@ import { useState } from "react";
 export default function Example() {
   const [fromDate, setFromDate] = useState("");
   const [toDate, setToDate] = useState("");
+  const [clientName, setClientName] = useState("");
+  const [eventType, setEventType] = useState("");
+  const [numAttend, setNumAttend] = useState(0);
+  const [preferences, setPreferences] = useState({
+    decorations: false,
+    parties: false,
+    photos: false,
+    meals: false,
+    drinks: false,
+  });
+
+  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, checked } = e.target;
+    setPreferences((prevState) => ({
+      ...prevState,
+      [name]: checked,
+    }));
+  };
+
   return (
     <form className="m-10">
       <div className="space-y-12">
@@ -29,8 +48,9 @@ export default function Example() {
                     id="name"
                     name="name"
                     type="text"
+                    onChange={(e) => setClientName(e.target.value)}
+                    value={clientName}
                     placeholder="Jane Smith / IBM"
-                    autoComplete="name"
                     className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                   />
                 </div>
@@ -76,7 +96,8 @@ export default function Example() {
                   name="type"
                   type="text"
                   placeholder="Wedding, Gala, etc."
-                  autoComplete="type"
+                  onChange={(e) => setEventType(e.target.value)}
+                  value={eventType}
                   className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                 />
               </div>
@@ -130,6 +151,8 @@ export default function Example() {
                     name="numAttendees"
                     type="number"
                     placeholder=" [1...10,000]."
+                    onChange={(e) => setNumAttend(Number(e.target.value))}
+                    value={numAttend}
                     className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                   />
                 </div>
@@ -150,6 +173,8 @@ export default function Example() {
                       name="decorations"
                       type="checkbox"
                       className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                      onChange={handleCheckboxChange}
+                      checked={preferences.decorations}
                     />
                   </div>
                   <div className="text-sm leading-6">
@@ -168,6 +193,8 @@ export default function Example() {
                       name="parties"
                       type="checkbox"
                       className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                      checked={preferences.parties}
+                      onChange={handleCheckboxChange}
                     />
                   </div>
                   <div className="text-sm leading-6">
@@ -187,6 +214,8 @@ export default function Example() {
                       name="photos"
                       type="checkbox"
                       className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                      checked={preferences.photos}
+                      onChange={handleCheckboxChange}
                     />
                   </div>
                   <div className="text-sm leading-6">
@@ -206,6 +235,8 @@ export default function Example() {
                       name="meals"
                       type="checkbox"
                       className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                      checked={preferences.meals}
+                      onChange={handleCheckboxChange}
                     />
                   </div>
                   <div className="text-sm leading-6">
@@ -225,6 +256,8 @@ export default function Example() {
                       name="drinks"
                       type="checkbox"
                       className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                      checked={preferences.drinks}
+                      onChange={handleCheckboxChange}
                     />
                   </div>
                   <div className="text-sm leading-6">
@@ -232,11 +265,10 @@ export default function Example() {
                       htmlFor="drinks"
                       className="font-medium text-gray-900"
                     >
-                      Drinks 
+                      Drinks
                     </label>
                   </div>
                 </div>
-
               </div>
             </fieldset>
           </div>

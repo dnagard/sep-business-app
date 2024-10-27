@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function ProductionManager() {
   return (
     <div className="flex flex-col items-center min-h-screen p-6 bg-gray-100">
@@ -5,43 +7,43 @@ export default function ProductionManager() {
         Production Manager Dashboard
       </h1>
 
-      <div className="flex gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <Link href="/productionmanager/submittaskform">
+          <div className="w-64 h-80 bg-white shadow-lg rounded-lg transform transition-transform hover:scale-105 p-6 flex flex-col justify-center items-center">
+            <h2 className="text-2xl font-semibold mb-4 text-center">
+              Create Task Plan
+            </h2>
+            <p className="text-gray-600 text-center">
+              Fill out a form with tasks that subteams need to accomplish.
+            </p>
+          </div>
+        </Link>
+
         <div className="w-64 h-80 bg-white shadow-lg rounded-lg transform transition-transform hover:scale-105 p-6 flex flex-col justify-center items-center">
           <h2 className="text-2xl font-semibold mb-4 text-center">
-            Create Task Plan
+            Review Task Plans
           </h2>
           <p className="text-gray-600 text-center">
-            Fill out a form with tasks that subteams need to accomplish.
+            Review the plans that the SubTeams created.
           </p>
         </div>
 
-        <div className="flex gap-8">
-          <div className="w-64 h-80 bg-white shadow-lg rounded-lg transform transition-transform hover:scale-105 p-6 flex flex-col justify-center items-center">
-            <h2 className="text-2xl font-semibold mb-4 text-center">
-              Review Task Plans
-            </h2>
-            <p className="text-gray-600 text-center">
-              Review the plans that the SubTeams created.
-            </p>
-          </div>
+        <div className="w-64 h-80 bg-white shadow-lg rounded-lg transform transition-transform hover:scale-105 p-6 flex flex-col justify-center items-center">
+          <h2 className="text-2xl font-semibold mb-4 text-center">
+            Create Staffing Request
+          </h2>
+          <p className="text-gray-600 text-center">
+            Request more personnel from HR.
+          </p>
+        </div>
 
-          <div className="w-64 h-80 bg-white shadow-lg rounded-lg transform transition-transform hover:scale-105 p-6 flex flex-col justify-center items-center">
-            <h2 className="text-2xl font-semibold mb-4 text-center">
-              Create Staffing Request
-            </h2>
-            <p className="text-gray-600 text-center">
-              Request more personell from HR.
-            </p>
-          </div>
-
-          <div className="w-64 h-80 bg-white shadow-lg rounded-lg transform transition-transform hover:scale-105 p-6 flex flex-col justify-center items-center">
-            <h2 className="text-2xl font-semibold mb-4 text-center">
-              Create Financial Request
-            </h2>
-            <p className="text-gray-600 text-center">
-              Request more resources from the Finanacial Manager.
-            </p>
-          </div>
+        <div className="w-64 h-80 bg-white shadow-lg rounded-lg transform transition-transform hover:scale-105 p-6 flex flex-col justify-center items-center">
+          <h2 className="text-2xl font-semibold mb-4 text-center">
+            Create Financial Request
+          </h2>
+          <p className="text-gray-600 text-center">
+            Request more resources from the Financial Manager.
+          </p>
         </div>
       </div>
     </div>

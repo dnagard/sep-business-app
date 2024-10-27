@@ -35,7 +35,7 @@ export default function EventList() {
 
   const handleEventClick = (id: string) => {
     if (user?.username === "customerserviceofficer") {
-      router.push(`/customerServiceOfficer/${id}`);
+      router.push(`/customerserviceofficer/${id}`);
     } else if (user?.username === "seniorcustomerservice") {
       router.push(`/seniorcustomerservice/${id}`);
     } else if (user?.username === "financialmanager") {

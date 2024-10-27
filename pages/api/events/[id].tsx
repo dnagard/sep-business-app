@@ -8,11 +8,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   if (req.method === 'GET') {
     try {
-      const event = await prisma.eventRequest.findUnique({ where: { id: Number(id) } });
+      const event = await prisma.eventRequest.findUnique({
+        where: { id: Number(id) },
+      });
+      if (!event) {
+        return res.status(404).json({ error: "Event not found" });
+      }
       res.status(200).json(event);
     } catch (error) {
-      console.log('GET error:', error);
-      res.status(500).json({ error: 'Error fetching event' });
+      console.error(error);
+      res.status(500).json({ error: "Error fetching event" });
     }
   } else if (req.method === 'PATCH') {
     const { status, nextAction } = req.body;

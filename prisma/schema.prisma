@@ -15,6 +15,8 @@ datasource db {
 
 model EventRequest {
   id           Int      @id @default(autoincrement())
+  nextAction   String   @default("seniorcustomerservice")
+  status       String   @default("review")
   clientName   String
   memo         String
   eventType    String
@@ -26,6 +28,7 @@ model EventRequest {
   photos       Boolean
   meals        Boolean
   drinks       Boolean
+  finNote      String?
   createdAt    DateTime @default(now())
 }
 

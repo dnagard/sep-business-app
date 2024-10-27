@@ -3,7 +3,7 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 
-export default function TaskRequestPM() {
+export default function TaskRequestSM() {
   const [team, setTeam] = useState("top-chef");
   const [activity, setActivity] = useState("");
   const [budget, setBudget] = useState(0);

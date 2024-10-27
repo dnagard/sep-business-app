@@ -19,15 +19,18 @@ export default function ProductionManager() {
           </div>
         </Link>
 
-        <div className="w-64 h-80 bg-white shadow-lg rounded-lg transform transition-transform hover:scale-105 p-6 flex flex-col justify-center items-center">
-          <h2 className="text-2xl font-semibold mb-4 text-center">
-            Review Task Plans
-          </h2>
-          <p className="text-gray-600 text-center">
-            Review the plans that the SubTeams created.
-          </p>
-        </div>
 
+          <div className="w-64 h-80 bg-white shadow-lg rounded-lg transform transition-transform hover:scale-105 p-6 flex flex-col justify-center items-center">
+            <h2 className="text-2xl font-semibold mb-4 text-center">
+              Review Task Plans
+            </h2>
+            <p className="text-gray-600 text-center">
+              Review the plans that the SubTeams created.
+            </p>
+          </div>
+
+
+      <Link href="/productionmanager/submitstaffrequest">
         <div className="w-64 h-80 bg-white shadow-lg rounded-lg transform transition-transform hover:scale-105 p-6 flex flex-col justify-center items-center">
           <h2 className="text-2xl font-semibold mb-4 text-center">
             Create Staffing Request
@@ -36,6 +39,7 @@ export default function ProductionManager() {
             Request more personnel from HR.
           </p>
         </div>
+      </Link>
 
         <div className="w-64 h-80 bg-white shadow-lg rounded-lg transform transition-transform hover:scale-105 p-6 flex flex-col justify-center items-center">
           <h2 className="text-2xl font-semibold mb-4 text-center">

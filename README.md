@@ -1,18 +1,29 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Getting Started
 
-## Getting Started
+1. **Install Dependencies**
 
-First, run the development server:
+    ```bash
+    npm install
+    ```
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+2. **Database Setup (SQLite & Prisma)**
+
+    ```bash
+    npx prisma migrate dev --name init
+    npx prisma generate
+    ```
+
+3. **Start Development Server (blocks terminal)**
+
+    ```bash
+    npm run dev
+    ```
+
+4. **View Database with Prisma Studio (blocks terminal)**
+
+    ```bash
+    npx prisma studio
+    ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 

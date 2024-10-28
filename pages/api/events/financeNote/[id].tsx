@@ -3,6 +3,8 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
+/* This API is for the finance manager to add his feedback to the event 
+details and forward the request to the admin manager */
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse

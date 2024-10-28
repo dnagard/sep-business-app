@@ -23,6 +23,7 @@ model EventRequest {
   fromDate     DateTime
   toDate       DateTime
   numAttend    Int
+  budget       Int
   decorations  Boolean
   parties      Boolean
   photos       Boolean

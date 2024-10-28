@@ -6,6 +6,7 @@ export type Event = {
   fromDate: Date;
   toDate: Date;
   numAttend: number;
+  budget: number;
   decorations: boolean;
   parties: boolean;
   photos: boolean;

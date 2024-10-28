@@ -14,6 +14,7 @@ export default function Example() {
   const [toDate, setToDate] = useState("");
   const [eventType, setEventType] = useState("");
   const [numAttend, setNumAttend] = useState(0);
+  const [budget, setBudget] = useState(0);
   const [preferences, setPreferences] = useState({
     decorations: false,
     parties: false,
@@ -42,6 +43,7 @@ export default function Example() {
       fromDate,
       toDate,
       numAttend,
+      budget,
       preferences,
     };
 
@@ -81,6 +83,7 @@ export default function Example() {
               Fill out this form to initiate a new Event Request.
             </p>
 
+            {/* Client name field */}
             <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
               <div className="sm:col-span-4">
                 <label
@@ -104,6 +107,7 @@ export default function Example() {
                 </div>
               </div>
 
+              {/* Event memo field */}
               <div className="col-span-full">
                 <label
                   htmlFor="memo"
@@ -126,6 +130,7 @@ export default function Example() {
             </div>
           </div>
 
+          {/* Event type field */}
           <div className="border-b border-gray-900/10 pb-12">
             <h2 className="text-base font-semibold leading-7 text-gray-900 mb-5">
               Event Details
@@ -152,9 +157,9 @@ export default function Example() {
               </div>
             </div>
 
+            {/* From date field */}
             <div className="flex flex-col my-5 ">
               <div className="flex gap-6">
-                {/* From Date Selector */}
                 <div className="flex flex-col ">
                   <label htmlFor="from" className="text-sm mb-2">
                     From:
@@ -168,7 +173,7 @@ export default function Example() {
                   />
                 </div>
 
-                {/* To Date Selector */}
+                {/* To Date field */}
                 <div className="flex flex-col">
                   <label htmlFor="to" className="text-sm mb-2">
                     To:
@@ -184,6 +189,7 @@ export default function Example() {
               </div>
             </div>
 
+            {/* Num attendees field */}
             <div className="flex gap-6">
               <div className="flex flex-col">
                 <label
@@ -208,11 +214,39 @@ export default function Example() {
               </div>
             </div>
 
+            {/* Estimated budget field */}
+            <div className="flex gap-6">
+              <div className="flex flex-col">
+                <label
+                  htmlFor="numAttendees"
+                  className=" block my-2 text-sm font-medium leading-6 text-gray-900"
+                >
+                  Estimated Budget
+                </label>
+                <div>
+                  <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                    <input
+                      id="numAttendees"
+                      name="numAttendees"
+                      type="number"
+                      placeholder=" [1...10,000]."
+                      onChange={(e) => setBudget(Number(e.target.value))}
+                      value={budget}
+                      className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Preferences selectors */}
             <div className="mt-10 space-y-10">
               <fieldset>
                 <legend className="text-sm font-semibold leading-6 text-gray-900">
                   Preferences
                 </legend>
+
+                {/* Decorations */}
                 <div className="mt-6 space-y-6">
                   <div className="relative flex gap-x-3">
                     <div className="flex h-6 items-center">
@@ -234,6 +268,8 @@ export default function Example() {
                       </label>
                     </div>
                   </div>
+
+                  {/* Parties */}
                   <div className="relative flex gap-x-3">
                     <div className="flex h-6 items-center">
                       <input
@@ -255,6 +291,7 @@ export default function Example() {
                     </div>
                   </div>
 
+                  {/* Photos */}
                   <div className="relative flex gap-x-3">
                     <div className="flex h-6 items-center">
                       <input
@@ -276,6 +313,7 @@ export default function Example() {
                     </div>
                   </div>
 
+                  {/* Breakfast, Lunch, Dinner */}
                   <div className="relative flex gap-x-3">
                     <div className="flex h-6 items-center">
                       <input
@@ -297,6 +335,7 @@ export default function Example() {
                     </div>
                   </div>
 
+                  {/* Drinks */}
                   <div className="relative flex gap-x-3">
                     <div className="flex h-6 items-center">
                       <input
@@ -323,6 +362,7 @@ export default function Example() {
           </div>
         </div>
 
+        {/* Button logic */}
         <div className="mt-6 flex items-center justify-end gap-x-6">
           <button
             type="button"
@@ -340,6 +380,7 @@ export default function Example() {
         </div>
       </form>
 
+      {/* Success popup */}
       {showToast && (
         <div className="fixed bottom-4 right-4 bg-green-500 text-white p-3 rounded shadow-lg transition-opacity duration-500">
           Event request recorded!

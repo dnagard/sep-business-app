@@ -28,3 +28,15 @@ export type TableEvent = {
   nextAction: string;
   createdAt: Date;
 }
+
+export type Task = {
+  id: number;
+  nextAction: string;
+  team: string;
+  activity: string;
+  budget: number;
+  personell: number;
+  dueDate: Date;
+  planNote?: string;
+  createdAt: string;
+}

@@ -33,9 +33,21 @@ model EventRequest {
   createdAt    DateTime @default(now())
 }
 
-model serviceRequest { 
+model serviceRequest {
   id           Int      @id @default(autoincrement())
   nextAction   String   @default("serviceteam")
+  team         String
+  activity     String
+  budget       Int
+  personell    Int
+  dueDate      String
+  planNote     String?
+  createdAt    DateTime @default(now())
+}
+
+model productionRequest {
+  id           Int      @id @default(autoincrement())
+  nextAction   String   @default("productionteam")
   team         String
   activity     String
   budget       Int

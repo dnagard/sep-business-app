@@ -5,7 +5,7 @@ const prisma = new PrismaClient();
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'POST') {
-    const { clientName, memo, eventType, fromDate, toDate, numAttend, preferences } = req.body;
+    const { clientName, memo, eventType, fromDate, toDate, numAttend, budget, preferences } = req.body;
 
     try {
       const eventRequest = await prisma.eventRequest.create({
@@ -16,6 +16,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           fromDate: new Date(fromDate),
           toDate: new Date(toDate),
           numAttend,
+          budget,
           decorations: preferences.decorations,
           parties: preferences.parties,
           photos: preferences.photos,

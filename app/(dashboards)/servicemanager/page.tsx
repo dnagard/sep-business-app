@@ -8,6 +8,7 @@ export default function ServiceManager() {
         </h1>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {/* Create task plan card */}
           <Link href="/servicemanager/submittaskform">
             <div className="w-64 h-80 bg-white shadow-lg rounded-lg transform transition-transform hover:scale-105 p-6 flex flex-col justify-center items-center">
               <h2 className="text-2xl font-semibold mb-4 text-center">
@@ -19,15 +20,19 @@ export default function ServiceManager() {
             </div>
           </Link>
 
-          <div className="w-64 h-80 bg-white shadow-lg rounded-lg transform transition-transform hover:scale-105 p-6 flex flex-col justify-center items-center">
-            <h2 className="text-2xl font-semibold mb-4 text-center">
-              Review Task Plans
-            </h2>
-            <p className="text-gray-600 text-center">
-              Review the plans that the SubTeams created.
-            </p>
-          </div>
+          {/* Task List Card */}
+          <Link href="/viewTasks">
+            <div className="w-64 h-80 bg-white shadow-lg rounded-lg transform transition-transform hover:scale-105 p-6 flex flex-col justify-center items-center">
+              <h2 className="text-2xl font-semibold mb-4 text-center">
+                Review Task Plans
+              </h2>
+              <p className="text-gray-600 text-center">
+                Review the plans that the SubTeams created.
+              </p>
+            </div>
+          </Link>
 
+          {/* Create staff request card*/}
           <Link href="/servicemanager/submitstaffrequest">
             <div className="w-64 h-80 bg-white shadow-lg rounded-lg transform transition-transform hover:scale-105 p-6 flex flex-col justify-center items-center">
               <h2 className="text-2xl font-semibold mb-4 text-center">
@@ -39,6 +44,8 @@ export default function ServiceManager() {
             </div>
           </Link>
 
+          {/* Create finance request list */}
+          {/* TODO: Create the finance form */}
           <div className="w-64 h-80 bg-white shadow-lg rounded-lg transform transition-transform hover:scale-105 p-6 flex flex-col justify-center items-center">
             <h2 className="text-2xl font-semibold mb-4 text-center">
               Create Financial Request

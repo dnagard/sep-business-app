@@ -22,11 +22,11 @@ export default function TaskRequestPM() {
           onChange={(e) => setTeam(e.target.value)}
           value={team}
         >
-          <option value="photography">Photography</option>
-          <option value="music">Music</option>
-          <option value="graphic-design">Graphic Design</option>
-          <option value="decorations">Decorations</option>
-          <option value="network-support">Network Support</option>
+          <option value="Photography">Photography</option>
+          <option value="Music">Music</option>
+          <option value="Graphic-design">Graphic Design</option>
+          <option value="Decorations">Decorations</option>
+          <option value="Network Support">Network Support</option>
         </select>
       </label>
       <label className="block">

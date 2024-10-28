@@ -69,8 +69,8 @@ export default function TaskRequestSM() {
             onChange={(e) => setTeam(e.target.value)}
             value={team}
           >
-            <option value="top-chef">Top Chef</option>
-            <option value="senior-waitress">Senior Waitress</option>
+            <option value="Top Chef">Top Chef</option>
+            <option value="Senior Waitress">Senior Waitress</option>
           </select>
         </label>
         <label className="block">

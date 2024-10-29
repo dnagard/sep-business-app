@@ -38,5 +38,5 @@ export type Task = {
   personell: number;
   dueDate: Date;
   planNote?: string;
-  createdAt: string;
+  createdAt: Date;
 }

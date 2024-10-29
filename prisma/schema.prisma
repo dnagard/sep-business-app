@@ -57,7 +57,7 @@ model productionRequest {
   createdAt    DateTime @default(now())
 }
 
-model staffRequest { 
+model staffRequest {
   id           Int      @id @default(autoincrement())
   nextAction   String   @default("humanresources")
   currStaff    Int

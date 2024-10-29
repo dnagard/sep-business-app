@@ -4,12 +4,14 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { Event } from "@/types/types";
 import EventDetails from "@/app/components/EventDetails";
+import { useRouter } from "next/navigation";
 
 export default function CustomerServiceOfficerDetail() {
   const [event, setEvent] = useState<Event | null>(null);
   const [isContactPopupOpen, setIsContactPopupOpen] = useState(false);
   const [isSuccessPopupOpen, setIsSuccessPopupOpen] = useState(false);
   const { id } = useParams() as { id: string };
+  const router = useRouter();
 
   useEffect(() => {
     async function fetchEvent() {
@@ -42,7 +44,10 @@ export default function CustomerServiceOfficerDetail() {
         const updatedEvent = await res.json();
         setEvent(updatedEvent);
         setIsSuccessPopupOpen(true);
-        setTimeout(() => setIsSuccessPopupOpen(false), 2500);
+        setTimeout(() => {
+          setIsSuccessPopupOpen(false);
+          router.push("/viewRequests");
+        }, 2500);
       } else {
         alert("Failed to update event status.");
       }

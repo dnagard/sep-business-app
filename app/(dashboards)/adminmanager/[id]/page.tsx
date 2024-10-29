@@ -4,11 +4,13 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { Event } from "@/types/types";
 import EventDetails from "@/app/components/EventDetails";
+import { useRouter } from "next/navigation";
 
 export default function AdminManager() {
   const [event, setEvent] = useState<Event | null>(null);
   const [isSuccessPopupOpen, setIsSuccessPopupOpen] = useState(false);
   const { id } = useParams() as { id: string };
+  const router = useRouter();
 
   async function fetchEvent(id: string) {
     try {
@@ -40,9 +42,14 @@ export default function AdminManager() {
         const updatedEvent = await res.json();
         setEvent(updatedEvent);
         setIsSuccessPopupOpen(true);
-        //TODO: Figure out how to reload the page nicely after an update has been made to status.
         await fetchEvent(String(event.id));
-        setTimeout(() => setIsSuccessPopupOpen(false), 2500);
+        setTimeout(() => {
+          setIsSuccessPopupOpen(false); 
+                  setTimeout(() => {
+                    setIsSuccessPopupOpen(false);
+                    router.push("/viewRequests");
+                  }, 2500);
+        }, 2500);
       } else {
         alert("Failed to update event status.");
       }

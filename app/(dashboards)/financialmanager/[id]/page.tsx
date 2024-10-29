@@ -4,12 +4,14 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { Event } from "@/types/types";
 import EventDetails from "@/app/components/EventDetails";
+import { useRouter } from "next/navigation";
 
 export default function FinancialManagerDetail() {
   const [event, setEvent] = useState<Event | null>(null);
   const [isSuccessPopupOpen, setIsSuccessPopupOpen] = useState(false);
   const [finNote, setFinNote] = useState("");
   const { id } = useParams() as { id: string };
+  const router = useRouter();
 
   // Function to fetch the event data
   async function fetchEvent(id: string) {
@@ -41,7 +43,10 @@ export default function FinancialManagerDetail() {
       if (res.ok) {
         setIsSuccessPopupOpen(true);
         fetchEvent(String(event.id)); // Refresh the event data to reflect the updated finNote
-        setTimeout(() => setIsSuccessPopupOpen(false), 2500);
+        setTimeout(() => {
+          setIsSuccessPopupOpen(false);
+          router.push("/viewRequests");
+        }, 2500);
       } else {
         alert("Failed to update financial note.");
       }

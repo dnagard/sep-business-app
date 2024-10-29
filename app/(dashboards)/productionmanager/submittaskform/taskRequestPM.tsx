@@ -10,7 +10,7 @@ export default function TaskRequestPM() {
   const [isSuccessPopupOpen, setIsSuccessPopupOpen] = useState(false);
 
   //Input form states
-  const [team, setTeam] = useState("photography");
+  const [team, setTeam] = useState("Photography");
   const [activity, setActivity] = useState("");
   const [budget, setBudget] = useState(0);
   const [personell, setPersonell] = useState(0);

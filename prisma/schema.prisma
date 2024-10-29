@@ -57,3 +57,22 @@ model productionRequest {
   createdAt    DateTime @default(now())
 }
 
+model staffRequest { 
+  id           Int      @id @default(autoincrement())
+  nextAction   String   @default("humanresources")
+  currStaff    Int
+  requiredStaff Int
+  reason       String
+  status       String   @default("reivew")
+  createdAt    DateTime @default(now())
+}
+
+model financeRequest {
+  id           Int      @id @default(autoincrement())
+  nextAction   String   @default("financeManager")
+  budget       Int
+  desiredBudget Int
+  reason       String
+  status       String   @default("reivew")
+  createdAt    DateTime @default(now())
+}

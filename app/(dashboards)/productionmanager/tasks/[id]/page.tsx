@@ -1,4 +1,5 @@
 "use client";
+//TODO: Switch this logic to production manager
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { Task } from "@/types/types";
@@ -6,10 +7,9 @@ import TaskDetails from "@/app/components/TaskDetails";
 import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 
-export default function ServiceTeamDetail() {
+export default function ProductionManagerDetail() {
   const [task, setTask] = useState<Task | null>(null);
   const [isSuccessPopupOpen, setIsSuccessPopupOpen] = useState(false);
-  const [planNote, setPlanNote] = useState("");
   const { id } = useParams() as { id: string };
 
   const { user } = useUser();
@@ -46,19 +46,20 @@ export default function ServiceTeamDetail() {
   // If task is not loaded yet, show loading message
   if (!task) return <p>Loading...</p>;
 
-  const handleSubmitNote = async () => {
+  const handleCloseIssue = async () => {
     try {
-      const res = await fetch(`/api/tasks/service/${id}`, {
+      const res = await fetch(`/api/tasks/production/manager/${id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ planNote, nextAction : "servicemanager" }),
+        body: JSON.stringify({ nextAction: "none" }),
       });
 
       if (res.ok) {
         setIsSuccessPopupOpen(true);
-        setTimeout(() => {setIsSuccessPopupOpen(false);
-        router.push("/viewTasks");}, 2500);
-
+        setTimeout(() => {
+          setIsSuccessPopupOpen(false);
+          router.push("/viewTasks");
+        }, 2500);
       } else {
         alert("Failed to update plan note.");
       }
@@ -72,25 +73,14 @@ export default function ServiceTeamDetail() {
     <div className="container mx-auto p-6">
       <TaskDetails />
 
-      {/* Plan note input box */}
-      {task.nextAction === "serviceteam" && (
-        <div className="mt-6">
-          <label htmlFor="planNote" className="block text-lg font-semibold">
-            Plan Feedback and Notes
-          </label>
-          <textarea
-            id="planNote"
-            value={planNote}
-            onChange={(e) => setPlanNote(e.target.value)}
-            className="w-full p-2 mt-2 border border-gray-300 rounded-lg"
-            placeholder="Enter plan feedback or notes here. Make sure to include any requested changes to staffing or budget here, and explain why..."
-            rows={4}
-          />
+      {/* Close issue */}
+      {task.nextAction === "productionmanager" && (
+        <div className="flex gap-4">
           <button
-            onClick={handleSubmitNote}
-            className="mt-4 px-4 py-2 bg-green-500 text-white font-semibold rounded-lg hover:bg-green-600"
+            className="px-4 py-2 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-300"
+            onClick={handleCloseIssue}
           >
-            Submit
+            Close Issue
           </button>
         </div>
       )}

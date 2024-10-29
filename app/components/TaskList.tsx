@@ -44,9 +44,9 @@ export default function EventList() {
 
   const handleClick = (id: string) => {
     if (user?.username === "servicemanager") {
-      router.push(`/servicemanager/${id}`);
+      router.push(`/servicemanager/tasks/${id}`);
     } else if (user?.username === "productionmanager") {
-      router.push(`/productionmanager/${id}`);
+      router.push(`/productionmanager/tasks/${id}`);
     } else if (user?.username === "serviceteam") {
       router.push(`/serviceteam/${id}`);
     } else if (user?.username === "productionteam") {

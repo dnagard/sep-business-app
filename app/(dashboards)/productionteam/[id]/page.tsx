@@ -1,5 +1,4 @@
 "use client";
-//TODO: Switch this logic to production team
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { Task } from "@/types/types";

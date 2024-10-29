@@ -1,5 +1,5 @@
 "use client";
-//TODO: Switch this logic to task view
+
 import { useEffect, useState } from "react";
 import { Task } from "@/types/types";
 import { useParams } from "next/navigation";

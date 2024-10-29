@@ -24,7 +24,7 @@ export default async function handler(
       res.status(201).json(serviceRequest);
     } catch (error) {
       console.error("Error creating serviceRequest:", error);
-      res.status(500).json({ error: "Failed to create event request" });
+      res.status(500).json({ error: "Failed to create task request" });
     }
   } else {
     res.status(405).json({ error: "Method not allowed" });

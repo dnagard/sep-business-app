@@ -46,11 +46,25 @@ In addition, the application supports task, staffing, and budget management for 
 2. **Initialize a [Clerk](https://clerk.com/) project**
 
     Create a new project, and add the following required users:
-    [Required Users](requiredUsers.png)
+
+    ![Required Users](./requiredUsers.png)
+
+    | User                      | Username             |
+    |---------------------------|----------------------|
+    | Human Resources           | humanresources       |
+    | Service Team              | serviceteam          |
+    | Production Team           | productionteam       |
+    | Service Manager           | servicemanager       |
+    | Production Manager        | productionmanager    |
+    | Admin Manager             | adminmanager         |
+    | Financial Manager         | financialmanager     |
+    | Senior Customer Service   | seniorcustomerservice |
+    | Customer Service Officer  | customerserviceofficer |
+
     (These are required for pathing and role based access control. Clerk does not
     allow more than 5 distinct roles in the free plan, so I had to use the usernames as their roles)
 
-    Once the users are created, grab the API keys under the configure tab, 
+    Once the users are created, grab the API keys under the configure tab,
     create `env.local` in the root directory and paste them in.
 
 3. **Database Setup (SQLite & Prisma)**
@@ -68,8 +82,8 @@ In addition, the application supports task, staffing, and budget management for 
 
 5. **Start Development Server (blocks terminal)**
 
-```bash
-npm run dev
-```
+    ```bash
+    npm run dev
+    ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.**

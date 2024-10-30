@@ -40,3 +40,25 @@ export type Task = {
   planNote?: string;
   createdAt: Date;
 }
+
+export type StaffRequest = {
+  id: number;
+  nextAction: string;
+  department: string;
+  currStaff: number;
+  requiredStaff: number;
+  reason: string;
+  status: string;
+  createdAt: Date;
+}
+
+export type FinanceRequest = {
+  id: number;
+  nextAction: string;
+  department: string;
+  budget: number;
+  desiredBudget: number;
+  reason: string;
+  status: string;
+  createdAt: Date;
+}

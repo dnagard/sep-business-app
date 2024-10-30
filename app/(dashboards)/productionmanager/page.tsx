@@ -44,6 +44,18 @@ export default function ProductionManager() {
           </div>
         </Link>
 
+        {/* Create staff request card */}
+        <Link href="/viewStaffRequest">
+          <div className="w-64 h-80 bg-white shadow-lg rounded-lg transform transition-transform hover:scale-105 p-6 flex flex-col justify-center items-center">
+            <h2 className="text-2xl font-semibold mb-4 text-center">
+              View Staffing Requests
+            </h2>
+            <p className="text-gray-600 text-center">
+              View past and pending staffing requests.
+            </p>
+          </div>
+        </Link>
+
         {/* Create finance request card */}
         {/* TODO: Create the finance form and link */}
         <div className="w-64 h-80 bg-white shadow-lg rounded-lg transform transition-transform hover:scale-105 p-6 flex flex-col justify-center items-center">

@@ -60,6 +60,7 @@ model productionRequest {
 model staffRequest {
   id           Int      @id @default(autoincrement())
   nextAction   String   @default("humanresources")
+  department   String
   currStaff    Int
   requiredStaff Int
   reason       String
@@ -70,6 +71,7 @@ model staffRequest {
 model financeRequest {
   id           Int      @id @default(autoincrement())
   nextAction   String   @default("financeManager")
+  department   String
   budget       Int
   desiredBudget Int
   reason       String

@@ -35,6 +35,13 @@ In addition, the application supports task, staffing, and budget management for 
 - **ORM**: [Prisma](https://www.prisma.io/) - for type-safe, SQL-based data modeling and querying.
 - **Testing**: [Jest](https://jestjs.io/) - a JavaScript testing framework to ensure code reliability.
 
+## Notes on Development
+
+This was my first front-end project, and it served as an introduction to Next.js and building user interfaces.
+The current version may lack polish, but it demonstrates a functional, multi-step workflow with role-based
+permissions. Working with these tools has given
+me a solid foundation, and I look forward to developing these skills in future projects.
+
 ## Getting Started
 
 1. **Install Dependencies**

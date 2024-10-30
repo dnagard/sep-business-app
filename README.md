@@ -1,47 +1,75 @@
-# Getting Started
+# Event Request Management System
+
+A basic website application built with Next.js for the frontend, SQLite as the database, Clerk for authentication, Prisma as an ORM, and Jest for testing. This project was part of an assignment for the Modern Methods of Software Engineering course at KTH. The primary objective was to design and implement a workflow application for an imaginary business, where different user roles interact to manage and approve event requests.
+
+## Project Overview
+
+This application allows various stakeholders in a business to process event requests through several stages, enabling collaboration between team members with distinct roles and permissions. The process flow is as follows:
+
+1. **Customer Service Officer (CSO)** initiates an event request.
+2. **Senior Customer Service Officer (SCSO)** reviews and forwards the request to the Financial Manager.
+3. **Financial Manager (FM)** adds a budget estimate and forwards it to the Administrative Manager.
+4. **Administrative Manager (AM)** finalizes the request status, either accepting or rejecting it.
+5. **CSO** communicates the decision to the client.
+
+In addition, the application supports task, staffing, and budget management for sub-teams, providing a centralized workflow for resource allocation and departmental communication.
+
+## Features
+
+### Event Request Logic
+
+- **Request Creation**: The CSO submits event requests with specific client details.
+- **Multi-Stage Review**: Requests move through sequential approvals from the SCSO, FM, and AM.
+- **Decision Communication**: Once finalized, the decision is communicated back to the CSO for client notification.
+
+### Sub-Team Collaboration
+
+- **Task Management**: Sub-teams receive task lists, submit plans, and make budget requests.
+- **Budget Tracking**: Department managers track and manage budget requests and can initiate hiring through HR if necessary.
+
+## Technical Stack
+
+- **Frontend**: [Next.js](https://nextjs.org/) - for building interactive, server-rendered pages.
+- **Database**: [SQLite](https://sqlite.org/index.html) - a simple, self-contained SQL database.
+- **Authentication**: [Clerk](https://clerk.dev/) - handles user login, role-based access, and permissions.
+- **ORM**: [Prisma](https://www.prisma.io/) - for type-safe, SQL-based data modeling and querying.
+- **Testing**: [Jest](https://jestjs.io/) - a JavaScript testing framework to ensure code reliability.
+
+## Getting Started
 
 1. **Install Dependencies**
 
-    ```bash
-    npm install
-    ```
+   ```bash
+   npm install
+   ```
 
-2. **Database Setup (SQLite & Prisma)**
+2. **Initialize a [Clerk](https://clerk.com/) project**
 
-    ```bash
-    npx prisma migrate dev --name init
-    npx prisma generate
-    ```
+    Create a new project, and add the following required users:
+    [Required Users](requiredUsers.png)
+    (These are required for pathing and role based access control. Clerk does not
+    allow more than 5 distinct roles in the free plan, so I had to use the usernames as their roles)
 
-3. **Start Development Server (blocks terminal)**
+    Once the users are created, grab the API keys under the configure tab, 
+    create `env.local` in the root directory and paste them in.
 
-    ```bash
-    npm run dev
-    ```
+3. **Database Setup (SQLite & Prisma)**
+
+   ```bash
+   npx prisma migrate dev --name init
+   npx prisma generate
+   ```
 
 4. **View Database with Prisma Studio (blocks terminal)**
 
-    ```bash
-    npx prisma studio
-    ```
+   ```bash
+   npx prisma studio
+   ```
+
+5. **Start Development Server (blocks terminal)**
+
+```bash
+npm run dev
+```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

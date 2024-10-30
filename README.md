@@ -93,4 +93,10 @@ me a solid foundation, and I look forward to developing these skills in future p
     npm run dev
     ```
 
+6. **Run database tests**
+
+    ```bash
+    npx jest
+    ```
+
 **Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.**

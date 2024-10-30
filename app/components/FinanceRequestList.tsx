@@ -10,12 +10,29 @@ export default function FinanceRequestPage() {
   const { user } = useUser();
   const router = useRouter();
 
+  /*  const res = await fetch("/api/financeRequest/lists"); 
+         if (!res.ok) {
+          console.error("Failed to fetch finance requests:", res.statusText);
+          return;
+        }
+*/
   useEffect(() => {
     async function fetchEvents() {
       try {
-        const res = await fetch("/api/financeRequest/lists");
-        if (!res.ok) {
-          console.error("Failed to fetch finance requests:", res.statusText);
+        let res: Response | null = null;
+        if (
+          user?.username === "financialmanager" ||
+          user?.username === "servicemanager" ||
+          user?.username === "productionmanager"
+        ) {
+          res = await fetch("/api/financeRequest/lists");
+        } else {
+          router.push("/");
+          return;
+        }
+
+        if (res && !res.ok) {
+          console.error("Failed to fetch finance request:", res.statusText);
           return;
         }
 
@@ -31,15 +48,15 @@ export default function FinanceRequestPage() {
       }
     }
     fetchEvents();
-  }, []);
+  }, [user?.username, router]);
 
   const handleClick = (id: string) => {
-    if (user?.username === "financemanager") {
-      router.push(`/financemanager/financeRequest/${id}`);
+    if (user?.username === "financialmanager") {
+      router.push(`/financialmanager/financeRequests/${id}`);
     } else if (user?.username === "productionmanager") {
-      router.push(`/productionmanager/financeRequest/${id}`);
+      router.push(`/productionmanager/financeRequests/${id}`);
     } else if (user?.username === "servicemanager") {
-      router.push(`/servicemanager/financeRequest/${id}`);
+      router.push(`/servicemanager/financeRequests/${id}`);
     }
   };
 
@@ -84,7 +101,9 @@ export default function FinanceRequestPage() {
         >
           <div className="flex justify-between items-center text-center">
             <div className="flex-1 text-gray-800">
-              {financeRequest.department}
+              {financeRequest.department === "servicemanager"
+                ? "Service"
+                : "Production"}
             </div>
             <div className="flex-1 text-gray-800">{financeRequest.reason}</div>
             <div className="flex-1 text-gray-600">{financeRequest.budget}</div>

@@ -2,23 +2,23 @@
 
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import { StaffRequest } from "@/types/types";
-import StaffRequestDetails from "@/app/components/StaffRequestDetails";
+import { FinanceRequest} from "@/types/types";
+import FinanceRequestDetails from "@/app/components/FinanceRequestDetails";
 import { useRouter } from "next/navigation";
 
-export default function HumanResourcesDecision() {
-  const [staffRequest, setStaffRequest] = useState<StaffRequest | null>(null);
+export default function FinancialManagerDecision() {
+  const [financeRequest, setFinanceRequest] = useState<FinanceRequest | null>(null);
   const [isSuccessPopupOpen, setIsSuccessPopupOpen] = useState(false);
   const { id } = useParams() as { id: string };
   const router = useRouter();
 
   async function fetchEvent(id: string) {
     try {
-      const res = await fetch(`/api/staff/${id}`);
+      const res = await fetch(`/api/financeRequest/${id}`);
       const data = await res.json();
-      setStaffRequest(data);
+      setFinanceRequest(data);
     } catch (error) {
-      console.error("Error fetching event:", error);
+      console.error("Error fetching finance requests:", error);
     }
   }
   /* Fetching data from the API */
@@ -27,24 +27,24 @@ export default function HumanResourcesDecision() {
   }, [id]);
 
   //TODO: Add some more interesting loading options, and potentially a skeleton somewhere.
-  if (!staffRequest) return <p>Loading...</p>;
+  if (!financeRequest) return <p>Loading...</p>;
 
   const handleDecision = async (stat: string, nxtAct: string) => {
     try {
-      const res = await fetch(`/api/staff/${id}`, {
+      const res = await fetch(`/api/financeRequest/${id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ status: stat, nextAction: nxtAct }),
       });
 
       if (res.ok) {
-        const updatedStaffRequest = await res.json();
-        setStaffRequest(updatedStaffRequest);
+        const updatedFinanceRequest = await res.json();
+        setFinanceRequest(updatedFinanceRequest);
         setIsSuccessPopupOpen(true);
-        await fetchEvent(String(staffRequest.id));
+        await fetchEvent(String(financeRequest.id));
         setTimeout(() => {
           setIsSuccessPopupOpen(false);
-          router.push("/viewStaffRequest");
+          router.push("/viewFinanceRequest");
         }, 2500);
       } else {
         alert("Failed to update staff request status.");
@@ -57,18 +57,22 @@ export default function HumanResourcesDecision() {
 
   return (
     <div className="container mx-auto p-6">
-      <StaffRequestDetails />
-      {staffRequest.nextAction === "humanresources" && (
+      <FinanceRequestDetails />
+      {financeRequest.nextAction === "financialmanager" && (
         <div className="flex gap-4">
           <button
-            onClick={() => handleDecision("rejected", staffRequest.department)}
+            onClick={() =>
+              handleDecision("rejected", financeRequest.department)
+            }
             className="px-4 py-2 bg-red-400 text-white font-semibold rounded-lg hover:bg-red-300"
           >
             Reject
           </button>
           <button
             className="px-4 py-2 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-300"
-            onClick={() => handleDecision("accepted", staffRequest.department)}
+            onClick={() =>
+              handleDecision("accepted", financeRequest.department)
+            }
           >
             Accept
           </button>
@@ -80,20 +84,20 @@ export default function HumanResourcesDecision() {
         <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white p-6 rounded-lg shadow-lg w-1/3 text-center">
             <h2 className="text-2xl font-semibold mb-4 text-blue-600">
-              {staffRequest.status === "accepted" && (
+              {financeRequest.status === "accepted" && (
                 <p>
                   <b>
-                    {staffRequest.department === "servicemanager"
+                    {financeRequest.department === "servicemanager"
                       ? "Service Team"
                       : "Production Team"}
                   </b>{" "}
                   notified of acceptance!
                 </p>
               )}
-              {staffRequest.status === "rejected" && (
+              {financeRequest.status === "rejected" && (
                 <p className="text-red-600">
                   <b>
-                    {staffRequest.department === "servicemanager"
+                    {financeRequest.department === "servicemanager"
                       ? "Service Team"
                       : "Production Team"}
                   </b>{" "}

@@ -70,7 +70,7 @@ model staffRequest {
 
 model financeRequest {
   id           Int      @id @default(autoincrement())
-  nextAction   String   @default("financeManager")
+  nextAction   String   @default("financialmanager")
   department   String
   budget       Int
   desiredBudget Int

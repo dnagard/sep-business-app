@@ -3,23 +3,45 @@
 import { useEffect, useState } from "react";
 import { Event } from "@/types/types";
 import { useParams } from "next/navigation";
+import { useUser } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
 
 export default function EventDetails() {
+  const { user } = useUser();
+  const router = useRouter();
+
   const [event, setEvent] = useState<Event | null>(null);
   const { id } = useParams() as { id: string };
 
   useEffect(() => {
     async function fetchEvent() {
       try {
-        const res = await fetch(`/api/events/${id}`);
-        const data = await res.json();
+        let res: Response | null = null;
+        if (
+          user?.username === "adminmanager" ||
+          user?.username === "customerserviceofficer" ||
+          user?.username === "financialmanager" ||
+          user?.username === "seniorcustomerservice"
+        ) {
+          res = await fetch(`/api/events/${id}`);
+        } else {
+          router.push("/");
+          return;
+        }
+
+        if (res && !res.ok) {
+          console.error("Failed to fetch finance request:", res.statusText);
+          return;
+        }
+
+        const data = await res?.json();
         setEvent(data);
       } catch (error) {
-        console.error("Error fetching event:", error);
+        console.error("Error fetching finance request:", error);
       }
     }
     fetchEvent();
-  }, [id]);
+  }, [user?.username, router, id]);
 
   if (!event) return <p>Loading...</p>;
 

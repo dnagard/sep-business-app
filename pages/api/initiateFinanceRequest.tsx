@@ -11,7 +11,7 @@ export default async function handler(
     const { department, budget, desiredBudget, reason, status } = req.body;
 
     try {
-      const eventRequest = await prisma.staffRequest.create({
+      const eventRequest = await prisma.financeRequest.create({
         data: {
           department,
           budget,

@@ -44,7 +44,7 @@ export default function ServiceManager() {
             </div>
           </Link>
 
-          {/* Create staff request card */}
+          {/* View staff request card */}
           <Link href="/viewStaffRequest">
             <div className="w-64 h-80 bg-white shadow-lg rounded-lg transform transition-transform hover:scale-105 p-6 flex flex-col justify-center items-center">
               <h2 className="text-2xl font-semibold mb-4 text-center">
@@ -57,15 +57,29 @@ export default function ServiceManager() {
           </Link>
 
           {/* Create finance request list */}
-          {/* TODO: Create the finance form */}
-          <div className="w-64 h-80 bg-white shadow-lg rounded-lg transform transition-transform hover:scale-105 p-6 flex flex-col justify-center items-center">
-            <h2 className="text-2xl font-semibold mb-4 text-center">
-              Create Financial Request
-            </h2>
-            <p className="text-gray-600 text-center">
-              Request more resources from the Financial Manager.
-            </p>
-          </div>
+          <Link href="/servicemanager/submitfinancerequest">
+            <div className="w-64 h-80 bg-white shadow-lg rounded-lg transform transition-transform hover:scale-105 p-6 flex flex-col justify-center items-center">
+              <h2 className="text-2xl font-semibold mb-4 text-center">
+                Create Financial Request
+              </h2>
+              <p className="text-gray-600 text-center">
+                Request more resources from the Financial Manager.
+              </p>
+            </div>
+          </Link>
+
+          {/* View finance request card */}
+          <Link href="/viewFinanceRequest">
+            <div className="w-64 h-80 bg-white shadow-lg rounded-lg transform transition-transform hover:scale-105 p-6 flex flex-col justify-center items-center">
+              <h2 className="text-2xl font-semibold mb-4 text-center">
+                View Finance Requests
+              </h2>
+              <p className="text-gray-600 text-center">
+                View past and pending finance requests.
+              </p>
+            </div>
+          </Link>
+
         </div>
       </div>
     );

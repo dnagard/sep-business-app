@@ -53,7 +53,10 @@ export default function FinanceRequestDetails() {
           {/* Column 1 */}
           <div>
             <div className="mb-4">
-              <strong>Reason:</strong> {financeRequest.department}
+              <strong>Department:</strong>
+              {financeRequest.department === "servicemanager"
+                ? " Service"
+                : " Production"}
             </div>
             <div className="mb-4">
               <strong>Reason:</strong> {financeRequest.reason}
